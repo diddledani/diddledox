@@ -1,8 +1,11 @@
 "use strict"
 
+const fetch = require('node-fetch');
+
 module.exports = (context, callback) => {
     const s = encodeURIComponent(context);
     fetch(`https://api.github.com/users/${s}`)
+    .then(res => res.json())
     .then(res => {
         return {
             name: res.name,
